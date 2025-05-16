@@ -1064,4 +1064,24 @@
     });
   </script>
  </body>
+ // Handle "Forgot Password?" button click
+document.getElementById('forgotPasswordBtn').addEventListener('click', () => {
+  const email = prompt('Please enter your registered email address:');
+  if (!email) return;
+  const role = document.getElementById('loginRole').value;
+  let users = [];
+  if (role === 'student') users = readData(STORAGE_KEYS.students);
+  else if (role === 'teacher') users = readData(STORAGE_KEYS.teachers);
+  else if (role === 'administrator') users = readData(STORAGE_KEYS.admins);
+  else {
+    alert('Invalid role.');
+    return;
+  }
+  const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+  if (user) {
+    alert(`Your password is: ${user.password}`);
+  } else {
+    alert('Email not found. Please check and try again.');
+  }
+});
 </html>
