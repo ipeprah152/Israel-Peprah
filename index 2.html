@@ -1,0 +1,1043 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ST. Augustine's School</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #000;
+      overflow-x: hidden;
+    }
+    .bg-overlay {
+      background-color: rgba(0, 0, 0, 0.65);
+    }
+    /* Scrollbar for dashboard tables */
+    ::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ffdb58;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #222;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen flex flex-col bg-black text-white">
+  <img
+    alt="Wide school campus with trees and students in uniform walking on pathways under bright daylight"
+    class="fixed inset-0 w-full h-full object-cover -z-10"
+    height="1080"
+    src="https://storage.googleapis.com/a1aa/image/528b3140-9bd4-4107-b4ee-1ed391c65af5.jpg"
+    width="1920"
+  />
+  <div class="fixed inset-0 bg-overlay -z-10"></div>
+  <header class="pt-8 pb-12 text-center select-none">
+    <h1
+      class="text-4xl sm:text-5xl font-extrabold text-yellow-400 drop-shadow-lg tracking-wide"
+    >
+      ST. Augustine's School
+    </h1>
+  </header>
+  <main
+    class="flex-grow max-w-md w-full mx-auto bg-yellow-400/10 backdrop-blur-md rounded-2xl p-8 shadow-lg shadow-yellow-400/50 mb-24 sm:mb-16"
+  >
+    <nav aria-label="Switch forms" class="flex justify-center mb-8" role="tablist">
+      <button
+        aria-controls="login-form"
+        aria-selected="true"
+        class="flex-1 py-3 font-semibold text-white border-b-4 border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 active-tab"
+        id="login-tab"
+        role="tab"
+        tabindex="0"
+      >
+        Login
+      </button>
+      <button
+        aria-controls="signup-form"
+        aria-selected="false"
+        class="flex-1 py-3 font-semibold text-white border-b-4 border-transparent hover:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        id="signup-tab"
+        role="tab"
+        tabindex="-1"
+      >
+        Sign Up
+      </button>
+    </nav>
+    <form
+      aria-label="Login form"
+      aria-live="polite"
+      autocomplete="off"
+      class="flex flex-col space-y-4"
+      id="login-form"
+      role="tabpanel"
+    >
+      <label class="font-semibold select-none" for="login-username">Username or Email</label>
+      <input
+        autocomplete="username"
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="login-username"
+        name="loginUsername"
+        required
+        type="text"
+      />
+      <label class="font-semibold select-none" for="login-password">Password</label>
+      <input
+        autocomplete="current-password"
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="login-password"
+        name="loginPassword"
+        required
+        type="password"
+      />
+      <label class="font-semibold select-none" for="login-role">Login as</label>
+      <select
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="login-role"
+        name="loginRole"
+        required
+      >
+        <option disabled selected value="">Select role</option>
+        <option value="admin">Administrator</option>
+        <option value="teacher">Teacher</option>
+        <option value="student">Student</option>
+      </select>
+      <button
+        class="mt-2 bg-yellow-400 text-black font-bold py-3 rounded-md hover:bg-yellow-300 transition-colors"
+        type="submit"
+      >
+        Login
+      </button>
+      <p
+        class="mt-2 text-yellow-400 text-right cursor-pointer hover:underline select-none"
+        id="show-forgot"
+        tabindex="0"
+      >
+        Forgot password?
+      </p>
+    </form>
+    <form
+      aria-label="Forgot password form"
+      aria-live="polite"
+      autocomplete="off"
+      class="hidden flex flex-col space-y-4"
+      id="forgot-form"
+      role="tabpanel"
+    >
+      <label class="font-semibold select-none" for="forgot-username">Username or Email or Phone</label>
+      <input
+        autocomplete="username"
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="forgot-username"
+        name="forgotUsername"
+        required
+        type="text"
+      />
+      <button
+        class="bg-yellow-400 text-black font-bold py-3 rounded-md hover:bg-yellow-300 transition-colors"
+        type="submit"
+      >
+        Reset Password
+      </button>
+      <p class="text-sm mt-1 min-h-[1.25rem]" id="forgot-msg"></p>
+      <p
+        class="text-yellow-400 text-right cursor-pointer hover:underline select-none"
+        id="back-to-login"
+        tabindex="0"
+      >
+        Back to Login
+      </p>
+    </form>
+    <form
+      aria-label="Sign up form"
+      aria-live="polite"
+      autocomplete="off"
+      class="hidden flex flex-col space-y-4"
+      enctype="multipart/form-data"
+      id="signup-form"
+      role="tabpanel"
+    >
+      <label class="font-semibold select-none" for="signup-username">Username</label>
+      <input
+        autocomplete="username"
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="signup-username"
+        name="signupUsername"
+        required
+        type="text"
+      />
+      <label class="font-semibold select-none" for="signup-email">Email</label>
+      <input
+        autocomplete="email"
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="signup-email"
+        name="signupEmail"
+        required
+        type="email"
+      />
+      <label class="font-semibold select-none" for="signup-phone">Phone Number</label>
+      <input
+        autocomplete="tel"
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="signup-phone"
+        name="signupPhone"
+        required
+        type="tel"
+      />
+      <label class="font-semibold select-none" for="signup-password">Password</label>
+      <input
+        autocomplete="new-password"
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="signup-password"
+        name="signupPassword"
+        required
+        type="password"
+      />
+      <label class="font-semibold select-none" for="signup-role">Sign up as</label>
+      <select
+        class="rounded-md px-3 py-2 text-black focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        id="signup-role"
+        name="signupRole"
+        required
+      >
+        <option disabled selected value="">Select role</option>
+        <option value="teacher">Teacher</option>
+        <option value="student">Student</option>
+        <option value="admin">Administrator</option>
+      </select>
+      <label class="font-semibold select-none" for="signup-profile">Profile Picture</label>
+      <input
+        accept="image/*"
+        class="text-yellow-400"
+        id="signup-profile"
+        name="signupProfile"
+        required
+        type="file"
+      />
+      <button
+        class="bg-yellow-400 text-black font-bold py-3 rounded-md hover:bg-yellow-300 transition-colors"
+        type="submit"
+      >
+        Sign Up
+      </button>
+    </form>
+    <section
+      aria-live="polite"
+      class="hidden mt-4"
+      id="dashboard-section"
+      role="region"
+      tabindex="0"
+    >
+      <div class="space-y-6" id="dashboard-content"></div>
+      <button
+        aria-label="Logout button"
+        class="mt-6 w-full bg-red-700 hover:bg-red-800 text-white font-bold py-3 rounded-md transition-colors"
+        id="logout-btn"
+      >
+        Logout
+      </button>
+    </section>
+  </main>
+  <footer
+    class="fixed bottom-0 w-full bg-black bg-opacity-70 text-yellow-400 font-bold text-center py-3 select-none text-sm sm:text-base"
+  >
+    © 2025 Designed and published by AnGeL OnE👼
+  </footer>
+  <script>
+    (() => {
+      const LS_KEY_USERS = 'sa_school_users';
+      const LS_KEY_MATERIALS = 'sa_school_materials';
+
+      const defaultAdminUsername = 'admin';
+      const defaultAdminPassword = 'Admin@1234';
+
+      function getUsers() {
+        const data = localStorage.getItem(LS_KEY_USERS);
+        return data ? JSON.parse(data) : [];
+      }
+      function setUsers(users) {
+        localStorage.setItem(LS_KEY_USERS, JSON.stringify(users));
+      }
+      function getMaterials() {
+        const data = localStorage.getItem(LS_KEY_MATERIALS);
+        return data ? JSON.parse(data) : {};
+      }
+      function setMaterials(materials) {
+        localStorage.setItem(LS_KEY_MATERIALS, JSON.stringify(materials));
+      }
+
+      function ensureDefaultAdmin() {
+        let users = getUsers();
+        const adminExists = users.some((u) => u.role === 'admin');
+        if (!adminExists) {
+          users.push({
+            id: Date.now(),
+            username: defaultAdminUsername,
+            email: 'admin@stagustine.edu',
+            phone: '0000000000',
+            password: defaultAdminPassword,
+            role: 'admin',
+            profilePicture: '',
+          });
+          setUsers(users);
+        }
+      }
+
+      function readFileAsDataURL(file) {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+      }
+
+      const loginTabBtn = document.getElementById('login-tab');
+      const signupTabBtn = document.getElementById('signup-tab');
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const forgotForm = document.getElementById('forgot-form');
+      const dashboardSection = document.getElementById('dashboard-section');
+      const dashboardContent = document.getElementById('dashboard-content');
+      const logoutBtn = document.getElementById('logout-btn');
+      const showForgotBtn = document.getElementById('show-forgot');
+      const backToLoginBtn = document.getElementById('back-to-login');
+      const forgotMsg = document.getElementById('forgot-msg');
+
+      function activateTab(tabName) {
+        if (tabName === 'login') {
+          loginTabBtn.classList.add('active-tab');
+          signupTabBtn.classList.remove('active-tab');
+          loginTabBtn.setAttribute('aria-selected', 'true');
+          signupTabBtn.setAttribute('aria-selected', 'false');
+          loginTabBtn.tabIndex = 0;
+          signupTabBtn.tabIndex = -1;
+          loginForm.classList.remove('hidden');
+          forgotForm.classList.add('hidden');
+          signupForm.classList.add('hidden');
+          dashboardSection.classList.add('hidden');
+          loginForm.setAttribute('aria-hidden', 'false');
+          signupForm.setAttribute('aria-hidden', 'true');
+          forgotForm.setAttribute('aria-hidden', 'true');
+          dashboardSection.setAttribute('aria-hidden', 'true');
+        } else if (tabName === 'signup') {
+          loginTabBtn.classList.remove('active-tab');
+          signupTabBtn.classList.add('active-tab');
+          loginTabBtn.setAttribute('aria-selected', 'false');
+          signupTabBtn.setAttribute('aria-selected', 'true');
+          loginTabBtn.tabIndex = -1;
+          signupTabBtn.tabIndex = 0;
+          loginForm.classList.add('hidden');
+          forgotForm.classList.add('hidden');
+          signupForm.classList.remove('hidden');
+          dashboardSection.classList.add('hidden');
+          loginForm.setAttribute('aria-hidden', 'true');
+          signupForm.setAttribute('aria-hidden', 'false');
+          forgotForm.setAttribute('aria-hidden', 'true');
+          dashboardSection.setAttribute('aria-hidden', 'true');
+        } else if (tabName === 'forgot') {
+          loginForm.classList.add('hidden');
+          signupForm.classList.add('hidden');
+          forgotForm.classList.remove('hidden');
+          dashboardSection.classList.add('hidden');
+          loginForm.setAttribute('aria-hidden', 'true');
+          signupForm.setAttribute('aria-hidden', 'true');
+          forgotForm.setAttribute('aria-hidden', 'false');
+          dashboardSection.setAttribute('aria-hidden', 'true');
+        } else if (tabName === 'dashboard') {
+          loginForm.classList.add('hidden');
+          signupForm.classList.add('hidden');
+          forgotForm.classList.add('hidden');
+          dashboardSection.classList.remove('hidden');
+          loginForm.setAttribute('aria-hidden', 'true');
+          signupForm.setAttribute('aria-hidden', 'true');
+          forgotForm.setAttribute('aria-hidden', 'true');
+          dashboardSection.setAttribute('aria-hidden', 'false');
+          dashboardSection.focus();
+        }
+      }
+
+      loginTabBtn.addEventListener('click', () => activateTab('login'));
+      signupTabBtn.addEventListener('click', () => activateTab('signup'));
+      showForgotBtn.addEventListener('click', () => activateTab('forgot'));
+      backToLoginBtn.addEventListener('click', () => {
+        forgotMsg.textContent = '';
+        activateTab('login');
+      });
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      // Backend API base URL
+      const API_BASE = 'http://localhost:3000/api';
+
+      // Signup logic with backend verification code
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = signupForm.signupUsername.value.trim();
+        const email = signupForm.signupEmail.value.trim();
+        const phone = signupForm.signupPhone.value.trim();
+        const password = signupForm.signupPassword.value;
+        const role = signupForm.signupRole.value;
+        const profileInput = signupForm.signupProfile;
+
+        if (!username || !email || !phone || !password || !role) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+        if (!validateEmail(email)) {
+          alert('Please enter a valid email.');
+          return;
+        }
+        if (profileInput.files.length === 0) {
+          alert('Please select a profile picture.');
+          return;
+        }
+
+        const users = getUsers();
+        if (users.find((u) => u.username.toLowerCase() === username.toLowerCase())) {
+          alert('Username already exists. Choose another.');
+          return;
+        }
+        if (users.find((u) => u.email.toLowerCase() === email.toLowerCase())) {
+          alert('Email already registered. Please login.');
+          return;
+        }
+
+        try {
+          // Request verification code from backend
+          const res = await fetch(`${API_BASE}/signup/request`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, phone, password, role }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to send verification code');
+
+          // Show modal to enter code
+          const verified = await showVerificationModalBackend(email);
+          if (!verified) {
+            alert('Verification failed.');
+            return;
+          }
+
+          // After verification, save user locally (simulate backend persistence)
+          const profileData = await readFileAsDataURL(profileInput.files[0]);
+          users.push({
+            id: Date.now(),
+            username,
+            email,
+            phone,
+            password,
+            role,
+            profilePicture: profileData,
+          });
+          setUsers(users);
+          alert('Signup successful! You can now login.');
+          signupForm.reset();
+          activateTab('login');
+        } catch (err) {
+          alert(err.message);
+        }
+      });
+
+      // Login logic with backend verification code
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const usernameInput = loginForm.loginUsername.value.trim();
+        const password = loginForm.loginPassword.value;
+        const role = loginForm.loginRole.value;
+        if (!usernameInput || !password || !role) {
+          alert('Please fill all the fields.');
+          return;
+        }
+        const users = getUsers();
+        const user = users.find(
+          (u) =>
+            (u.username.toLowerCase() === usernameInput.toLowerCase() ||
+              u.email.toLowerCase() === usernameInput.toLowerCase()) &&
+            u.role === role
+        );
+
+        if (!user) {
+          alert('User not found for that role.');
+          return;
+        }
+        if (user.password !== password) {
+          alert('Incorrect password.');
+          return;
+        }
+
+        try {
+          // Request verification code from backend
+          const res = await fetch(`${API_BASE}/login/request-code`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: user.email, phone: user.phone }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to send verification code');
+
+          // Show modal to enter code
+          const verified = await showVerificationModalBackend(user.email);
+          if (!verified) {
+            alert('Verification failed.');
+            return;
+          }
+
+          loginForm.reset();
+          displayDashboard(user);
+          activateTab('dashboard');
+        } catch (err) {
+          alert(err.message);
+        }
+      });
+
+      // Forgot password logic with backend sending password via email/sms
+      forgotForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        forgotMsg.textContent = '';
+        const identifier = forgotForm.forgotUsername.value.trim().toLowerCase();
+        if (!identifier) {
+          forgotMsg.textContent = 'Please enter username, email, or phone.';
+          forgotMsg.className = 'text-red-600 text-sm mt-1';
+          return;
+        }
+        const users = getUsers();
+        const user = users.find(
+          (u) =>
+            u.username.toLowerCase() === identifier ||
+            u.email.toLowerCase() === identifier ||
+            u.phone.toLowerCase() === identifier
+        );
+        if (!user) {
+          forgotMsg.textContent = 'User not found.';
+          forgotMsg.className = 'text-red-600 text-sm mt-1';
+          return;
+        }
+        try {
+          const res = await fetch(`${API_BASE}/password/reset/request`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to send password reset code');
+
+          forgotMsg.textContent =
+            'Verification code sent to your email and phone (if provided). Please check and enter below.';
+          forgotMsg.className = 'text-green-600 text-sm mt-1';
+
+          // Show modal to enter code and new password
+          const resetSuccess = await showPasswordResetModal(user.email);
+          if (resetSuccess) {
+            alert('Password reset successful. You can now login with your new password.');
+            activateTab('login');
+          } else {
+            alert('Password reset failed or cancelled.');
+          }
+        } catch (err) {
+          forgotMsg.textContent = err.message;
+          forgotMsg.className = 'text-red-600 text-sm mt-1';
+        }
+      });
+
+      logoutBtn.addEventListener('click', () => {
+        dashboardContent.innerHTML = '';
+        activateTab('login');
+      });
+
+      async function showVerificationModalBackend(email) {
+        return new Promise((resolve) => {
+          const modal = document.createElement('div');
+          modal.setAttribute('role', 'dialog');
+          modal.setAttribute('aria-modal', 'true');
+          modal.style.position = 'fixed';
+          modal.style.top = '0';
+          modal.style.left = '0';
+          modal.style.width = '100vw';
+          modal.style.height = '100vh';
+          modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+          modal.style.color = '#ffdb58';
+          modal.style.display = 'flex';
+          modal.style.flexDirection = 'column';
+          modal.style.justifyContent = 'center';
+          modal.style.alignItems = 'center';
+          modal.style.zIndex = '10000';
+          modal.style.fontSize = '1.2rem';
+          modal.style.padding = '1rem';
+
+          const info = document.createElement('p');
+          info.textContent = 'Please enter the verification code sent to your email/phone:';
+          info.className = 'mb-4 text-center max-w-xs';
+
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.placeholder = 'Enter code';
+          input.style.fontSize = '1.5rem';
+          input.style.padding = '0.5rem';
+          input.style.borderRadius = '8px';
+          input.style.border = 'none';
+          input.style.margin = '1rem 0';
+          input.style.width = '180px';
+          input.style.textAlign = 'center';
+          input.autofocus = true;
+          input.className = 'text-black';
+
+          const feedback = document.createElement('div');
+          feedback.style.color = 'red';
+          feedback.style.height = '1.25rem';
+          feedback.className = 'text-sm';
+
+          const submit = document.createElement('button');
+          submit.textContent = 'Verify';
+          submit.style.backgroundColor = '#ffdb58';
+          submit.style.border = 'none';
+          submit.style.padding = '0.6rem 1rem';
+          submit.style.fontWeight = '700';
+          submit.style.cursor = 'pointer';
+          submit.style.borderRadius = '8px';
+          submit.className = 'hover:bg-yellow-300 transition-colors';
+
+          modal.appendChild(info);
+          modal.appendChild(input);
+          modal.appendChild(feedback);
+          modal.appendChild(submit);
+          document.body.appendChild(modal);
+
+          input.focus();
+
+          submit.onclick = async () => {
+            const code = input.value.trim();
+            if (!code) {
+              feedback.textContent = 'Please enter the code.';
+              return;
+            }
+            try {
+              const res = await fetch(`${API_BASE}/verify-code`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, code }),
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || 'Verification failed');
+              document.body.removeChild(modal);
+              resolve(true);
+            } catch (err) {
+              feedback.textContent = 'Incorrect code, try again.';
+            }
+          };
+          input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              submit.click();
+            }
+          });
+        });
+      }
+
+      async function showPasswordResetModal(email) {
+        return new Promise((resolve) => {
+          const modal = document.createElement('div');
+          modal.setAttribute('role', 'dialog');
+          modal.setAttribute('aria-modal', 'true');
+          modal.style.position = 'fixed';
+          modal.style.top = '0';
+          modal.style.left = '0';
+          modal.style.width = '100vw';
+          modal.style.height = '100vh';
+          modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+          modal.style.color = '#ffdb58';
+          modal.style.display = 'flex';
+          modal.style.flexDirection = 'column';
+          modal.style.justifyContent = 'center';
+          modal.style.alignItems = 'center';
+          modal.style.zIndex = '10000';
+          modal.style.fontSize = '1.2rem';
+          modal.style.padding = '1rem';
+
+          const info = document.createElement('p');
+          info.textContent = 'Enter the verification code sent to your email/phone and your new password:';
+          info.className = 'mb-4 text-center max-w-xs';
+
+          const codeInput = document.createElement('input');
+          codeInput.type = 'text';
+          codeInput.placeholder = 'Verification code';
+          codeInput.style.fontSize = '1.2rem';
+          codeInput.style.padding = '0.5rem';
+          codeInput.style.borderRadius = '8px';
+          codeInput.style.border = 'none';
+          codeInput.style.margin = '0.5rem 0';
+          codeInput.style.width = '180px';
+          codeInput.style.textAlign = 'center';
+          codeInput.autofocus = true;
+          codeInput.className = 'text-black';
+
+          const passwordInput = document.createElement('input');
+          passwordInput.type = 'password';
+          passwordInput.placeholder = 'New password';
+          passwordInput.style.fontSize = '1.2rem';
+          passwordInput.style.padding = '0.5rem';
+          passwordInput.style.borderRadius = '8px';
+          passwordInput.style.border = 'none';
+          passwordInput.style.margin = '0.5rem 0 1rem 0';
+          passwordInput.style.width = '180px';
+          passwordInput.className = 'text-black';
+
+          const feedback = document.createElement('div');
+          feedback.style.color = 'red';
+          feedback.style.height = '1.25rem';
+          feedback.className = 'text-sm mb-2';
+
+          const submit = document.createElement('button');
+          submit.textContent = 'Reset Password';
+          submit.style.backgroundColor = '#ffdb58';
+          submit.style.border = 'none';
+          submit.style.padding = '0.6rem 1rem';
+          submit.style.fontWeight = '700';
+          submit.style.cursor = 'pointer';
+          submit.style.borderRadius = '8px';
+          submit.className = 'hover:bg-yellow-300 transition-colors';
+
+          modal.appendChild(info);
+          modal.appendChild(codeInput);
+          modal.appendChild(passwordInput);
+          modal.appendChild(feedback);
+          modal.appendChild(submit);
+          document.body.appendChild(modal);
+
+          codeInput.focus();
+
+          submit.onclick = async () => {
+            const code = codeInput.value.trim();
+            const newPassword = passwordInput.value;
+            if (!code) {
+              feedback.textContent = 'Please enter the verification code.';
+              return;
+            }
+            if (!newPassword || newPassword.length < 6) {
+              feedback.textContent = 'Password must be at least 6 characters.';
+              return;
+            }
+            try {
+              const res = await fetch(`${API_BASE}/password/reset/confirm`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, code, newPassword }),
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || 'Password reset failed');
+              const users = getUsers();
+              const user = users.find((u) => u.email === email);
+              if (user) {
+                user.password = newPassword;
+                setUsers(users);
+              }
+              document.body.removeChild(modal);
+              resolve(true);
+            } catch (err) {
+              feedback.textContent = err.message;
+            }
+          };
+          codeInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              submit.click();
+            }
+          });
+          passwordInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              submit.click();
+            }
+          });
+        });
+      }
+
+      function displayDashboard(user) {
+        dashboardContent.innerHTML = '';
+        const welcome = document.createElement('h2');
+        welcome.textContent = `Welcome ${user.username} (${user.role.charAt(0).toUpperCase() + user.role.slice(1)})`;
+        welcome.className = 'text-yellow-400 text-center text-2xl font-extrabold select-none drop-shadow-md';
+        dashboardContent.appendChild(welcome);
+
+        if (user.role === 'student') {
+          showStudentClassroom(user);
+        } else if (user.role === 'teacher') {
+          showTeacherClassroom(user);
+        } else if (user.role === 'admin') {
+          showAdminPanel(user);
+        }
+      }
+
+      function showStudentClassroom(user) {
+        const container = document.createElement('div');
+        container.id = 'classroom-materials';
+        container.className = 'mt-4';
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Classroom Materials';
+        h3.className = 'text-xl font-semibold mb-3 select-none';
+        container.appendChild(h3);
+
+        const materials = getMaterials();
+        const userMaterials = materials['student'] || [];
+
+        if (userMaterials.length === 0) {
+          const p = document.createElement('p');
+          p.textContent = 'No materials found.';
+          p.className = 'italic text-yellow-300';
+          container.appendChild(p);
+        } else {
+          userMaterials.forEach((m) => {
+            const div = document.createElement('div');
+            div.className = 'bg-yellow-400/20 rounded-lg p-3 mb-3 text-yellow-100';
+            div.textContent = m.name + (m.file ? ' (File attached)' : '');
+            container.appendChild(div);
+          });
+        }
+        dashboardContent.appendChild(container);
+      }
+
+      function showTeacherClassroom(user) {
+        const container = document.createElement('div');
+        container.id = 'student-details';
+        container.className = 'mt-4 overflow-x-auto';
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Students';
+        h3.className = 'text-xl font-semibold mb-3 select-none';
+        container.appendChild(h3);
+
+        const users = getUsers();
+        const students = users.filter((u) => u.role === 'student');
+        if (students.length === 0) {
+          const p = document.createElement('p');
+          p.textContent = 'No students found.';
+          p.className = 'italic text-yellow-300';
+          container.appendChild(p);
+        } else {
+          const table = document.createElement('table');
+          table.className = 'min-w-full border border-yellow-400 rounded-lg overflow-hidden';
+          const caption = document.createElement('caption');
+          caption.textContent = 'Students Details';
+          caption.className = 'text-lg font-semibold mb-2 text-yellow-400 select-none';
+          container.appendChild(caption);
+
+          const thead = document.createElement('thead');
+          thead.className = 'bg-yellow-400 text-black';
+          thead.innerHTML =
+            '<tr><th class="p-2 text-left">Profile</th><th class="p-2 text-left">Username</th><th class="p-2 text-left">Email</th><th class="p-2 text-left">Phone</th></tr>';
+          table.appendChild(thead);
+
+          const tbody = document.createElement('tbody');
+          students.forEach((std) => {
+            const tr = document.createElement('tr');
+            tr.className = 'even:bg-yellow-400/20';
+
+            const imgTd = document.createElement('td');
+            imgTd.className = 'p-2 align-middle';
+            if (std.profilePicture) {
+              const img = document.createElement('img');
+              img.src = std.profilePicture;
+              img.alt = 'Profile picture of ' + std.username;
+              img.className = 'w-12 h-12 rounded-full object-cover border-2 border-yellow-400';
+              imgTd.appendChild(img);
+            } else {
+              imgTd.textContent = 'N/A';
+            }
+            tr.appendChild(imgTd);
+
+            const usernameTd = document.createElement('td');
+            usernameTd.className = 'p-2 align-middle';
+            usernameTd.textContent = std.username;
+            tr.appendChild(usernameTd);
+
+            const emailTd = document.createElement('td');
+            emailTd.className = 'p-2 align-middle';
+            emailTd.textContent = std.email;
+            tr.appendChild(emailTd);
+
+            const phoneTd = document.createElement('td');
+            phoneTd.className = 'p-2 align-middle';
+            phoneTd.textContent = std.phone;
+            tr.appendChild(phoneTd);
+
+            tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+          container.appendChild(table);
+        }
+        dashboardContent.appendChild(container);
+      }
+
+      function showAdminPanel(user) {
+        const container = document.createElement('div');
+        container.id = 'admin-panel';
+        container.className = 'mt-4 overflow-x-auto';
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Admin Panel - Manage Users';
+        h3.className = 'text-xl font-semibold mb-3 select-none text-yellow-400';
+        container.appendChild(h3);
+
+        const users = getUsers();
+
+        const table = document.createElement('table');
+        table.className = 'min-w-full border border-yellow-400 rounded-lg overflow-hidden';
+        const caption = document.createElement('caption');
+        caption.textContent = 'All Users';
+        caption.className = 'text-lg font-semibold mb-2 text-yellow-400 select-none';
+        container.appendChild(caption);
+
+        const thead = document.createElement('thead');
+        thead.className = 'bg-yellow-400 text-black';
+        thead.innerHTML =
+          '<tr><th class="p-2 text-left">Profile</th><th class="p-2 text-left">Username</th><th class="p-2 text-left">Email</th><th class="p-2 text-left">Phone</th><th class="p-2 text-left">Role</th><th class="p-2 text-left">Actions</th></tr>';
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+
+        users.forEach((u, idx) => {
+          const tr = document.createElement('tr');
+          tr.className = idx % 2 === 0 ? 'even:bg-yellow-400/20' : '';
+
+          const imgTd = document.createElement('td');
+          imgTd.className = 'p-2 align-middle';
+          if (u.profilePicture) {
+            const img = document.createElement('img');
+            img.src = u.profilePicture;
+            img.alt = 'Profile picture of ' + u.username;
+            img.className = 'w-12 h-12 rounded-full object-cover border-2 border-yellow-400';
+            imgTd.appendChild(img);
+          } else {
+            imgTd.textContent = 'N/A';
+          }
+          tr.appendChild(imgTd);
+
+          const usernameTd = document.createElement('td');
+          usernameTd.className = 'p-2 align-middle';
+          const usernameInput = document.createElement('input');
+          usernameInput.type = 'text';
+          usernameInput.value = u.username;
+          usernameInput.className =
+            'w-full rounded-md px-2 py-1 text-black border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400';
+          usernameTd.appendChild(usernameInput);
+          tr.appendChild(usernameTd);
+
+          const emailTd = document.createElement('td');
+          emailTd.className = 'p-2 align-middle';
+          const emailInput = document.createElement('input');
+          emailInput.type = 'email';
+          emailInput.value = u.email;
+          emailInput.className =
+            'w-full rounded-md px-2 py-1 text-black border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400';
+          emailTd.appendChild(emailInput);
+          tr.appendChild(emailTd);
+
+          const phoneTd = document.createElement('td');
+          phoneTd.className = 'p-2 align-middle';
+          const phoneInput = document.createElement('input');
+          phoneInput.type = 'tel';
+          phoneInput.value = u.phone;
+          phoneInput.className =
+            'w-full rounded-md px-2 py-1 text-black border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400';
+          phoneTd.appendChild(phoneInput);
+          tr.appendChild(phoneTd);
+
+          const roleTd = document.createElement('td');
+          roleTd.className = 'p-2 align-middle';
+          const roleSelect = document.createElement('select');
+          roleSelect.className =
+            'w-full rounded-md px-2 py-1 text-black border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400';
+          ['admin', 'teacher', 'student'].forEach((r) => {
+            const opt = document.createElement('option');
+            opt.value = r;
+            opt.textContent = r.charAt(0).toUpperCase() + r.slice(1);
+            if (r === u.role) opt.selected = true;
+            roleSelect.appendChild(opt);
+          });
+          roleTd.appendChild(roleSelect);
+          tr.appendChild(roleTd);
+
+          const actionTd = document.createElement('td');
+          actionTd.className = 'p-2 align-middle';
+          const saveBtn = document.createElement('button');
+          saveBtn.textContent = 'Save';
+          saveBtn.className =
+            'bg-yellow-400 text-black font-bold px-3 py-1 rounded-md hover:bg-yellow-300 transition-colors';
+          saveBtn.addEventListener('click', () => {
+            let canSave = true;
+            if (
+              !usernameInput.value.trim() ||
+              !emailInput.value.trim() ||
+              !phoneInput.value.trim()
+            ) {
+              alert('All fields except password are required.');
+              canSave = false;
+              return;
+            }
+            if (!validateEmail(emailInput.value.trim())) {
+              alert('Invalid email format.');
+              canSave = false;
+              return;
+            }
+            if (canSave) {
+              let users = getUsers();
+              if (
+                users.some(
+                  (us, i) =>
+                    i !== idx &&
+                    us.username.toLowerCase() === usernameInput.value.trim().toLowerCase()
+                )
+              ) {
+                alert('Username already in use.');
+                canSave = false;
+                return;
+              }
+              if (
+                users.some(
+                  (us, i) =>
+                    i !== idx &&
+                    us.email.toLowerCase() === emailInput.value.trim().toLowerCase()
+                )
+              ) {
+                alert('Email already in use.');
+                canSave = false;
+                return;
+              }
+              if (canSave) {
+                users[idx].username = usernameInput.value.trim();
+                users[idx].email = emailInput.value.trim();
+                users[idx].phone = phoneInput.value.trim();
+                users[idx].role = roleSelect.value;
+                setUsers(users);
+                alert('User updated successfully.');
+              }
+            }
+          });
+          actionTd.appendChild(saveBtn);
+          tr.appendChild(actionTd);
+
+          tbody.appendChild(tr);
+        });
+
+        table.appendChild(tbody);
+        container.appendChild(table);
+
+        dashboardContent.appendChild(container);
+      }
+
+      ensureDefaultAdmin();
+      activateTab('login');
+    })();
+  </script>
+</body>
+</html>
